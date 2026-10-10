@@ -2,6 +2,7 @@ import 'package:flutter/widgets.dart' show Color, EdgeInsets;
 import 'package:plate_alphabet/plate_alphabet.dart';
 import 'package:plate_core/plate_core.dart';
 
+import 'bosnia_and_herzegovina_colors.dart';
 import 'bosnia_and_herzegovina_country.dart';
 
 /// Where the ink sits, in plate units: every plate is the 520×110 mm the
@@ -89,9 +90,9 @@ abstract final class BosniaAndHerzegovinaPlates {
     band: _artworkBand,
     fixed: const <_Fixed>[_Fixed('-', 238), _Fixed('-', 319.5)],
     runs: <_Run>[
-      _Run('prefix', _serial, const <double>[91, 144, 198]),
+      _Run('prefix', _serial, _registerAcross(91, 198, 3)),
       _Run('letter', _letter, const <double>[279]),
-      _Run('digits', _threeDigits, const <double>[362, 415, 468]),
+      _Run('digits', _threeDigits, _registerAcross(362, 468, 3)),
     ],
   );
 
@@ -104,9 +105,9 @@ abstract final class BosniaAndHerzegovinaPlates {
     band: _agriculturalBand,
     fixed: const <_Fixed>[_Fixed('-', 228.3), _Fixed('-', 316.6)],
     runs: <_Run>[
-      _Run('prefix', _serial, const <double>[83, 134, 186]),
+      _Run('prefix', _serial, _registerAcross(83, 186, 3)),
       _Run('letter', _letter, const <double>[273]),
-      _Run('digits', _threeDigits, const <double>[363, 418.5, 475]),
+      _Run('digits', _threeDigits, _registerAcross(363, 475, 3)),
     ],
   );
 
@@ -119,7 +120,7 @@ abstract final class BosniaAndHerzegovinaPlates {
       _Fixed('M', 202),
     ],
     runs: <_Run>[
-      _Run('digits', _digits(4), const <double>[334.4, 375.4, 415.8, 456.4]),
+      _Run('digits', _digits(4), _registerAcross(334.4, 456.4, 4)),
     ],
   );
 
@@ -127,9 +128,9 @@ abstract final class BosniaAndHerzegovinaPlates {
     id: 'ba.diplomatic',
     fixed: const <_Fixed>[_Fixed('-', 199.3), _Fixed('-', 290.4)],
     runs: <_Run>[
-      _Run('code', _digits(2), const <double>[98, 154.6]),
+      _Run('code', _digits(2), _registerAcross(98, 154.6, 2)),
       _Run('letter', _letter, const <double>[245]),
-      _Run('digits', _threeDigits, const <double>[333.4, 384.6, 436.3]),
+      _Run('digits', _threeDigits, _registerAcross(333.4, 436.3, 3)),
     ],
   );
 
@@ -159,6 +160,13 @@ abstract final class BosniaAndHerzegovinaPlates {
   static List<PlateAlphabet> _digits(int n) => <PlateAlphabet>[
     for (int i = 0; i < n; i++) BosniaAndHerzegovinaAlphabets.digits,
   ];
+
+  static List<double> _registerAcross(double start, double end, int count) {
+    final double pitch = (end - start) / (count - 1);
+    return <double>[
+      for (int i = 0; i < count; i++) start + pitch * i,
+    ];
+  }
 
   static PlateSpec _twoLetter(String id, String second) => _spec(
     id: id,
@@ -198,6 +206,16 @@ abstract final class BosniaAndHerzegovinaPlates {
       canvasHeight: _Layout.height,
       // The country draws nothing (no flag, no caption); the box only has to
       // lie on the canvas. The band itself is the background's.
+      bands: const <PlateBand>[
+        PlateBand(
+          box: PlateBox(8.75, 6.25, 502.75, 95.5),
+          color: BosniaAndHerzegovinaColors.ink,
+        ),
+        PlateBand(
+          box: PlateBox(11.35, 8.85, 497.3, 90.3),
+          color: BosniaAndHerzegovinaColors.white,
+        ),
+      ],
       panel: PlatePanel(
         box: band == null
             ? const PlateBox(0, 0, 1, 1)

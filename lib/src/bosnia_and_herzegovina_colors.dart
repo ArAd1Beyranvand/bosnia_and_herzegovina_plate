@@ -1,11 +1,8 @@
 import 'package:flutter/widgets.dart';
 
-/// Colours of the Bosnian and Herzegovinian plates. `band`, `ink` and `red`
-/// are modal pixels of the vector artwork (`Registarske_tablice…`,
-/// `Probne_registarske_tablice…`). The agricultural, EUPM and diplomatic
-/// values are modal pixels of photographs (EUPM and the diplomatic plate
-/// flattened off-axis) and carry their lighting; the EUPM field is the
-/// brief's colour-balanced value.
+/// Modal pixels of the reference images. `band`, `ink` and `red` come from
+/// vector artwork; the agricultural, EUPM and diplomatic values come from
+/// photographs and carry their lighting.
 abstract final class BosniaAndHerzegovinaColors {
   static const Color white = Color(0xFFFFFFFF);
   static const Color ink = Color(0xFF1F1A17);

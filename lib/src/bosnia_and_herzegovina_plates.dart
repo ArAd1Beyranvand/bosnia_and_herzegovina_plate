@@ -5,9 +5,8 @@ import 'package:plate_core/plate_core.dart';
 import 'bosnia_and_herzegovina_colors.dart';
 import 'bosnia_and_herzegovina_country.dart';
 
-/// Where the ink sits, in plate units: every plate is the 520×110 mm the
-/// article gives. Each reference was flattened to it at 4 px per unit and its
-/// ink runs read off.
+/// Where the ink sits, in plate units on the 520×110 canvas, read off each
+/// reference flattened to it at 4 px per unit.
 ///
 /// Ink is 65–66 tall on the artwork plates (y 21.2–86.5) and 78–89 on the
 /// photographs; a box that tall would need 120+, so every box is the full
@@ -74,10 +73,9 @@ class _Run {
   final List<double> centres;
 }
 
-/// The plates, one builder. [private] is `A12-A-345`; [taxi] `TA-123456` and
-/// [temporary] `TT-123456` share a layout (`TT` red, the letters printed);
-/// [agricultural] is the private format in green with the band inset;
-/// [eupm] is `EUPM 0374`; [diplomatic] `14-A-094`.
+/// [private] is `A12-A-345`; [taxi] and [temporary] (`TA-` / `TT-123456`)
+/// share a layout; [agricultural] is the private format with the band inset;
+/// [eupm] is `EUPM 0374`; [diplomatic] is `14-A-094`.
 ///
 /// Not implemented: the pre-1998 series (Herzeg-Bosna, Republika Srpska,
 /// Yugoslav, UNPF, working road machine), which the article captions as
@@ -119,9 +117,7 @@ abstract final class BosniaAndHerzegovinaPlates {
       _Fixed('P', 153),
       _Fixed('M', 202),
     ],
-    runs: <_Run>[
-      _Run('digits', _digits(4), _registerAcross(334.4, 456.4, 4)),
-    ],
+    runs: <_Run>[_Run('digits', _digits(4), _registerAcross(334.4, 456.4, 4))],
   );
 
   static final PlateSpec diplomatic = _spec(
@@ -163,9 +159,7 @@ abstract final class BosniaAndHerzegovinaPlates {
 
   static List<double> _registerAcross(double start, double end, int count) {
     final double pitch = (end - start) / (count - 1);
-    return <double>[
-      for (int i = 0; i < count; i++) start + pitch * i,
-    ];
+    return <double>[for (int i = 0; i < count; i++) start + pitch * i];
   }
 
   static PlateSpec _twoLetter(String id, String second) => _spec(

@@ -3,9 +3,8 @@ import 'package:plate_core/plate_core.dart';
 
 import 'bosnia_and_herzegovina_colors.dart';
 
-/// One ink on one field. The private, taxi and temporary plates carry a
-/// rounded frame in the ink colour, 3.6 thick on 110 (read off the artwork);
-/// the photographed plates are drawn without one.
+/// One ink on one field. Only the artwork plates carry a rounded frame in the
+/// ink colour (3.6 on 110).
 abstract final class BosniaAndHerzegovinaThemes {
   static final PlateTheme private = _theme(
     BosniaAndHerzegovinaColors.white,

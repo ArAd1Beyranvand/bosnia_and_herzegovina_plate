@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart' show Color, EdgeInsets;
+import 'package:flutter/widgets.dart' show EdgeInsets;
 import 'package:plate_alphabet/plate_alphabet.dart';
 import 'package:plate_core/plate_core.dart';
 
@@ -257,7 +257,7 @@ abstract final class BosniaAndHerzegovinaPlates {
             text: 'BIH',
             box: band.label,
             glyphHeight: 30,
-            color: const Color(0xFFFFFFFF),
+            color: BosniaAndHerzegovinaColors.white,
           ),
         for (final _Fixed f in fixed)
           PlateLabel(

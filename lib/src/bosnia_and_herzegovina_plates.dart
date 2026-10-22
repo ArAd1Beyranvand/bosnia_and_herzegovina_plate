@@ -45,13 +45,7 @@ class _Band {
 }
 
 /// Artwork plates: blue x 12.5–57.5, y 9.8–98.2.
-const _Band _artworkBand = _Band(
-  12.5,
-  57.5,
-  9.8,
-  98.2,
-  PlateBox(12.5, 69.5, 45, 21),
-);
+const _Band _artworkBand = _Band(12.5, 57.5, 9.8, 98.2, PlateBox(12.5, 69.5, 45, 21));
 
 /// Agricultural photo: blue x 4–47, y 6.5–101.
 const _Band _agriculturalBand = _Band(4, 47, 6.5, 101, PlateBox(4, 70, 43, 21));
@@ -111,12 +105,7 @@ abstract final class BosniaAndHerzegovinaPlates {
 
   static final PlateSpec eupm = _spec(
     id: 'ba.eupm',
-    fixed: const <_Fixed>[
-      _Fixed('E', 69),
-      _Fixed('U', 111),
-      _Fixed('P', 153),
-      _Fixed('M', 202),
-    ],
+    fixed: const <_Fixed>[_Fixed('E', 69), _Fixed('U', 111), _Fixed('P', 153), _Fixed('M', 202)],
     runs: <_Run>[_Run('digits', _digits(4), _registerAcross(334.4, 456.4, 4))],
   );
 
@@ -144,9 +133,7 @@ abstract final class BosniaAndHerzegovinaPlates {
     BosniaAndHerzegovinaAlphabets.digits,
     BosniaAndHerzegovinaAlphabets.digits,
   ];
-  static const List<PlateAlphabet> _letter = <PlateAlphabet>[
-    BosniaAndHerzegovinaAlphabets.letters,
-  ];
+  static const List<PlateAlphabet> _letter = <PlateAlphabet>[BosniaAndHerzegovinaAlphabets.letters];
   static const List<PlateAlphabet> _threeDigits = <PlateAlphabet>[
     BosniaAndHerzegovinaAlphabets.digits,
     BosniaAndHerzegovinaAlphabets.digits,
@@ -165,15 +152,9 @@ abstract final class BosniaAndHerzegovinaPlates {
   static PlateSpec _twoLetter(String id, String second) => _spec(
     id: id,
     band: _artworkBand,
-    fixed: <_Fixed>[
-      const _Fixed('T', 91.3),
-      _Fixed(second, 144.3),
-      const _Fixed('-', 184.2),
-    ],
+    fixed: <_Fixed>[const _Fixed('T', 91.3), _Fixed(second, 144.3), const _Fixed('-', 184.2)],
     runs: <_Run>[
-      _Run('digits', _digits(6), <double>[
-        for (int i = 0; i < 6; i++) 223 + 49.5 * i,
-      ]),
+      _Run('digits', _digits(6), <double>[for (int i = 0; i < 6; i++) 223 + 49.5 * i]),
     ],
   );
 
@@ -187,9 +168,7 @@ abstract final class BosniaAndHerzegovinaPlates {
     final List<PlateTextGroup> groups = <PlateTextGroup>[];
     for (final _Run run in runs) {
       groups.add(
-        PlateTextGroup(<int>[
-          for (int i = 0; i < run.centres.length; i++) next + i,
-        ], key: run.key),
+        PlateTextGroup(<int>[for (int i = 0; i < run.centres.length; i++) next + i], key: run.key),
       );
       next += run.centres.length;
     }
@@ -201,24 +180,13 @@ abstract final class BosniaAndHerzegovinaPlates {
       // The country draws nothing (no flag, no caption); the box only has to
       // lie on the canvas. The band itself is the background's.
       bands: const <PlateBand>[
-        PlateBand(
-          box: PlateBox(8.75, 6.25, 502.75, 95.5),
-          color: BosniaAndHerzegovinaColors.ink,
-        ),
-        PlateBand(
-          box: PlateBox(11.35, 8.85, 497.3, 90.3),
-          color: BosniaAndHerzegovinaColors.white,
-        ),
+        PlateBand(box: PlateBox(8.75, 6.25, 502.75, 95.5), color: BosniaAndHerzegovinaColors.ink),
+        PlateBand(box: PlateBox(11.35, 8.85, 497.3, 90.3), color: BosniaAndHerzegovinaColors.white),
       ],
       panel: PlatePanel(
         box: band == null
             ? const PlateBox(0, 0, 1, 1)
-            : PlateBox(
-                band.left,
-                band.top,
-                band.end - band.left,
-                band.bottom - band.top,
-              ),
+            : PlateBox(band.left, band.top, band.end - band.left, band.bottom - band.top),
         padding: EdgeInsets.zero,
       ),
       background: band == null
@@ -228,10 +196,7 @@ abstract final class BosniaAndHerzegovinaPlates {
               PlatePart(
                 PlateSection.rows(<PlatePart>[
                   PlatePart(PlateSection.plain, end: band.top),
-                  PlatePart(
-                    const PlateSection.fill(PlateFill.panel),
-                    end: band.bottom,
-                  ),
+                  PlatePart(const PlateSection.fill(PlateFill.panel), end: band.bottom),
                   const PlatePart(PlateSection.plain),
                 ]),
                 end: band.end,

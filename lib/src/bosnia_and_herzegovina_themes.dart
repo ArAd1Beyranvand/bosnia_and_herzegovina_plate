@@ -39,11 +39,10 @@ abstract final class BosniaAndHerzegovinaThemes {
   );
 }
 
-PlateTheme _theme(Color field, Color ink, double border) =>
-    PlateTheme.monochrome(
-      field: field,
-      ink: ink,
-      inactive: BosniaAndHerzegovinaColors.inactive,
-      borderWidthRatio: border,
-      plateRadiusRatio: 0.07,
-    );
+PlateTheme _theme(Color field, Color ink, double border) => PlateTheme.monochrome(
+  field: field,
+  ink: ink,
+  inactive: BosniaAndHerzegovinaColors.inactive,
+  borderWidthRatio: border,
+  plateRadiusRatio: 0.07,
+);

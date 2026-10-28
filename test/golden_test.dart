@@ -31,11 +31,11 @@ void main() {
           BosniaAndHerzegovinaThemes.private,
           'A 1 2 A 3 4 5',
         ),
-        'taxi': (BosniaAndHerzegovinaPlates.taxi, BosniaAndHerzegovinaThemes.taxi, '1 2 3 4 5 6'),
+        'taxi': (BosniaAndHerzegovinaPlates.taxiTemporary, BosniaAndHerzegovinaThemes.taxi, 'A 1 2 3 4 5 6'),
         'temporary': (
-          BosniaAndHerzegovinaPlates.temporary,
+          BosniaAndHerzegovinaPlates.taxiTemporary,
           BosniaAndHerzegovinaThemes.temporary,
-          '1 2 3 4 5 6',
+          'T 1 2 3 4 5 6',
         ),
         'agricultural': (
           BosniaAndHerzegovinaPlates.agricultural,

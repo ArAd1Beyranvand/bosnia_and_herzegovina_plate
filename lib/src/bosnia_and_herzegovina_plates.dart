@@ -3,6 +3,7 @@ import 'package:plate_alphabet/plate_alphabet.dart';
 import 'package:plate_core/plate_core.dart';
 
 import 'bosnia_and_herzegovina_colors.dart';
+import 'bosnia_and_herzegovina_themes.dart';
 import 'bosnia_and_herzegovina_country.dart';
 
 /// Where the ink sits, in plate units on the 520×110 canvas, read off each
@@ -67,8 +68,7 @@ class _Run {
   final List<double> centres;
 }
 
-/// [private] is `A12-A-345`; [taxi] and [temporary] (`TA-` / `TT-123456`)
-/// share a layout; [agricultural] is the private format with the band inset;
+/// [private] is `A12-A-345`; [taxiTemporary] is `TA-` / `TT-123456`; [agricultural] is the private format with the band inset;
 /// [eupm] is `EUPM 0374`; [diplomatic] is `14-A-094`.
 ///
 /// Not implemented: the pre-1998 series (Herzeg-Bosna, Republika Srpska,
@@ -88,9 +88,18 @@ abstract final class BosniaAndHerzegovinaPlates {
     ],
   );
 
-  static final PlateSpec taxi = _twoLetter('ba.taxi', 'A');
-
-  static final PlateSpec temporary = _twoLetter('ba.temporary', 'T');
+  /// `TA-` / `TT-123456`; values are [class, digits] and the class picks the
+  /// theme ([BosniaAndHerzegovinaThemes.byClass]).
+  static final PlateSpec taxiTemporary = _spec(
+    id: 'ba.taxi_temporary',
+    band: _artworkBand,
+    fixed: const <_Fixed>[_Fixed('T', 91.3), _Fixed('-', 184.2)],
+    runs: <_Run>[
+      _Run('class', _shortTerm, const <double>[144.3]),
+      _Run('digits', _digits(6), <double>[for (int i = 0; i < 6; i++) 223 + 49.5 * i]),
+    ],
+    resolveTheme: BosniaAndHerzegovinaThemes.byClass,
+  );
 
   static final PlateSpec agricultural = _spec(
     id: 'ba.agricultural',
@@ -121,8 +130,7 @@ abstract final class BosniaAndHerzegovinaPlates {
 
   static List<PlateSpec> get all => <PlateSpec>[
     private,
-    taxi,
-    temporary,
+    taxiTemporary,
     agricultural,
     eupm,
     diplomatic,
@@ -132,6 +140,9 @@ abstract final class BosniaAndHerzegovinaPlates {
     BosniaAndHerzegovinaAlphabets.first,
     BosniaAndHerzegovinaAlphabets.digits,
     BosniaAndHerzegovinaAlphabets.digits,
+  ];
+  static const List<PlateAlphabet> _shortTerm = <PlateAlphabet>[
+    BosniaAndHerzegovinaAlphabets.shortTermClass,
   ];
   static const List<PlateAlphabet> _letter = <PlateAlphabet>[BosniaAndHerzegovinaAlphabets.letters];
   static const List<PlateAlphabet> _threeDigits = <PlateAlphabet>[
@@ -149,20 +160,12 @@ abstract final class BosniaAndHerzegovinaPlates {
     return <double>[for (int i = 0; i < count; i++) start + pitch * i];
   }
 
-  static PlateSpec _twoLetter(String id, String second) => _spec(
-    id: id,
-    band: _artworkBand,
-    fixed: <_Fixed>[const _Fixed('T', 91.3), _Fixed(second, 144.3), const _Fixed('-', 184.2)],
-    runs: <_Run>[
-      _Run('digits', _digits(6), <double>[for (int i = 0; i < 6; i++) 223 + 49.5 * i]),
-    ],
-  );
-
   static PlateSpec _spec({
     required String id,
     required List<_Run> runs,
     required List<_Fixed> fixed,
     _Band? band,
+    PlateThemeResolver? resolveTheme,
   }) {
     int next = 0;
     final List<PlateTextGroup> groups = <PlateTextGroup>[];
@@ -232,6 +235,7 @@ abstract final class BosniaAndHerzegovinaPlates {
           ),
       ],
       textGroups: groups,
+      resolveTheme: resolveTheme,
     );
   }
 }

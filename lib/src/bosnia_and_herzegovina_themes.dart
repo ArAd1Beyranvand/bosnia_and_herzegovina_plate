@@ -20,6 +20,19 @@ abstract final class BosniaAndHerzegovinaThemes {
     0.033,
   );
 
+  /// The class letter picks the ink: `A` taxi, `T` temporary.
+  static PlateTheme byClass(PlateTheme base, String Function(String key) group) {
+    final PlateTheme t = group('class') == 'T' ? temporary : taxi;
+    return base.copyWith(
+      plateBackground: t.plateBackground,
+      plateBorder: t.plateBorder,
+      ink: t.ink,
+      dividerColor: t.dividerColor,
+      activeColor: t.activeColor,
+      inactiveColor: t.inactiveColor,
+    );
+  }
+
   static final PlateTheme agricultural = _theme(
     BosniaAndHerzegovinaColors.agriculturalField,
     BosniaAndHerzegovinaColors.agriculturalInk,

@@ -37,7 +37,9 @@ class BosniaAndHerzegovinaValidator extends GatedPlateValidator {
           : const PlateValidation.invalid(reasonDiplomatic);
     }
     if (prefix.isNotEmpty) {
-      return prefix.length == 3 && letter.length == 1 && isDigitsOfLength(digits, 3)
+      return prefix.length == 3 &&
+              letter.length == 1 &&
+              isDigitsOfLength(digits, 3)
           ? const PlateValidation.valid()
           : const PlateValidation.invalid(reasonSerial);
     }

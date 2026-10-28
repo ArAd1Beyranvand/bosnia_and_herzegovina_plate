@@ -21,7 +21,10 @@ abstract final class BosniaAndHerzegovinaThemes {
   );
 
   /// The class letter picks the ink: `A` taxi, `T` temporary.
-  static PlateTheme byClass(PlateTheme base, String Function(String key) group) {
+  static PlateTheme byClass(
+    PlateTheme base,
+    String Function(String key) group,
+  ) {
     final PlateTheme t = group('class') == 'T' ? temporary : taxi;
     return base.copyWith(
       plateBackground: t.plateBackground,
@@ -52,10 +55,11 @@ abstract final class BosniaAndHerzegovinaThemes {
   );
 }
 
-PlateTheme _theme(Color field, Color ink, double border) => PlateTheme.monochrome(
-  field: field,
-  ink: ink,
-  inactive: BosniaAndHerzegovinaColors.inactive,
-  borderWidthRatio: border,
-  plateRadiusRatio: 0.07,
-);
+PlateTheme _theme(Color field, Color ink, double border) =>
+    PlateTheme.monochrome(
+      field: field,
+      ink: ink,
+      inactive: BosniaAndHerzegovinaColors.inactive,
+      borderWidthRatio: border,
+      plateRadiusRatio: 0.07,
+    );

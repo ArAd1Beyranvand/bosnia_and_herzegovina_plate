@@ -10,4 +10,5 @@ export 'src/bosnia_and_herzegovina_country.dart';
 export 'src/bosnia_and_herzegovina_plates.dart';
 export 'src/bosnia_and_herzegovina_themes.dart';
 export 'src/bosnia_and_herzegovina_validators.dart';
-export 'package:plate_alphabet/plate_alphabet.dart' show BosniaAndHerzegovinaAlphabets;
+export 'package:plate_alphabet/plate_alphabet.dart'
+    show BosniaAndHerzegovinaAlphabets;
